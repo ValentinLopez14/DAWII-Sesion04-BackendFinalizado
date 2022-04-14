@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Modalidad;
 import com.empresa.service.ModalidadService;
-import com.empresa.util.Constantes;
 
 @RestController
 @RequestMapping("/rest/modalidad")
@@ -40,13 +39,13 @@ public class ModalidadController {
 		try {
 			Modalidad objSalida = modalidadService.insertaActualizaModalidad(obj);
 			if (objSalida == null) {
-				salida.put("mensaje", Constantes.MENSAJE_REG_ERROR);
+				salida.put("mensaje", "No se registró, consulte con el administrador.");
 			}else {
-				salida.put("mensaje", Constantes.MENSAJE_REG_EXITOSO);
+				salida.put("mensaje", "Se registró correctamente.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			salida.put("mensaje", Constantes.MENSAJE_REG_ERROR);
+			salida.put("mensaje", "No se registró, consulte con el administrador.");
 		}
 		return ResponseEntity.ok(salida);
 	}
