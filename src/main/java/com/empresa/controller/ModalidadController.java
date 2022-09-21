@@ -37,17 +37,8 @@ public class ModalidadController {
 	@ResponseBody
 	public  ResponseEntity<?> insertaModalidad(@RequestBody Modalidad obj){
 		Map<String, Object> salida = new HashMap<>();
-		try {
-			Modalidad objSalida = modalidadService.insertaActualizaModalidad(obj);
-			if (objSalida == null) {
-				salida.put("mensaje", "No se registró, consulte con el administrador.");
-			}else {
-				salida.put("mensaje", "Se registró correctamente.");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "No se registró, consulte con el administrador.");
-		}
+		
+		
 		return ResponseEntity.ok(salida);
 	}
 	
