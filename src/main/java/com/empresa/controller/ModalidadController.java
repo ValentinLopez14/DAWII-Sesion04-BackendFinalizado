@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Modalidad;
 import com.empresa.service.ModalidadService;
+import com.empresa.util.AppSettings;
 
 @RestController
-@RequestMapping("/rest/modalidad")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/url/modalidad")
+@CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class ModalidadController {
 
 	@Autowired
@@ -34,7 +35,7 @@ public class ModalidadController {
 
 	@PostMapping
 	@ResponseBody
-	public  ResponseEntity<Map<String, Object>> insertaModalidad(@RequestBody Modalidad obj){
+	public  ResponseEntity<?> insertaModalidad(@RequestBody Modalidad obj){
 		Map<String, Object> salida = new HashMap<>();
 		try {
 			Modalidad objSalida = modalidadService.insertaActualizaModalidad(obj);

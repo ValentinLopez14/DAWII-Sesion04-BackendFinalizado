@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Deporte;
 import com.empresa.service.DeporteService;
+import com.empresa.util.AppSettings;
 
 @RestController
-@RequestMapping("/rest/util")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/url/util")
+@CrossOrigin(origins = AppSettings.URL_CROSS_ORIGIN)
 public class UtilController {
 
 	@Autowired
