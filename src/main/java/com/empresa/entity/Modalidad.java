@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "modalidad")
@@ -15,11 +16,15 @@ public class Modalidad {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idModalidad;
+	
+	@Pattern(regexp = "[a-zA-ZáéíóúñüÁÉÍÓÚÑÜ\\s]{2,20}" , message = "El nombre es de 2 a 20 caracteres")
 	private String nombre;
 	private int numHombres;
 	private int numMujeres;
 	private int edadMaxima;
 	private int edadMinima;
+	
+	@Pattern(regexp = "[a-zA-ZáéíóúñüÁÉÍÓÚÑÜ\\s]{2,20}" , message = "La sede  es de 2 a 20 caracteres")
 	private String sede;
 
 	@ManyToOne
