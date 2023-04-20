@@ -5,13 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,20 +37,11 @@ public class ModalidadController {
 
 	@PostMapping
 	@ResponseBody
-	public  ResponseEntity<?> insertaModalidad(@Valid @RequestBody Modalidad obj, Errors errors){
+	public  ResponseEntity<?> insertaModalidad( @RequestBody Modalidad obj, Errors errors){
 		Map<String, Object> salida = new HashMap<>();
 		List<String> lstMensajes = new ArrayList<>();
 		salida.put("errores", lstMensajes);
 
-		List<ObjectError> lstErrors =  errors.getAllErrors();
-		for (ObjectError objectError : lstErrors) {
-			objectError.getDefaultMessage();
-			lstMensajes.add(objectError.getDefaultMessage());
-		}
-		if (!CollectionUtils.isEmpty(lstMensajes)) {
-			return ResponseEntity.ok(salida);
-		}
-		
 		Modalidad objSalida = modalidadService.insertaActualizaModalidad(obj);
 		if (objSalida == null) {
 			lstMensajes.add("Error en el registro");
